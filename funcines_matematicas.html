@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Funciones Matemáticas</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5b2c83, #8e44ad);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 20px;
+        }
+
+        nav {
+            background-color: #2c1740;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #d7a8ff;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #5b2c83;
+            font-size: 32px;
+        }
+
+        .intro {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #cccccc;
+            text-align: center;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px #cccccc;
+            transition: transform 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+        }
+
+        .tarjeta h3 {
+            color: #8e44ad;
+            font-size: 24px;
+        }
+
+        .formula {
+            background-color: #eee2f7;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 19px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .grafico {
+            width: 100%;
+            height: 220px;
+            margin-top: 15px;
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ejes */
+        .eje-x {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #555;
+            top: 50%;
+        }
+
+        .eje-y {
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background-color: #555;
+            left: 50%;
+        }
+
+        /* Línea */
+        .linea {
+            position: absolute;
+            width: 130%;
+            height: 4px;
+            background-color: #8e44ad;
+            top: 50%;
+            left: -15%;
+            transform: rotate(-20deg);
+        }
+
+        /* Parábola */
+        .parabola {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border: 5px solid #3498db;
+            border-radius: 50% 50% 0 0;
+            left: calc(50% - 80px);
+            top: 50px;
+            transform: rotate(180deg);
+        }
+
+        /* Exponencial */
+        .exponencial {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-left: 4px solid #e67e22;
+            border-bottom: 4px solid #e67e22;
+            left: 45%;
+            bottom: 20px;
+            transform: skewY(-35deg);
+        }
+
+        footer {
+            background-color: #2c1740;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .boton {
+            display: inline-block;
+            background-color: #8e44ad;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        .boton:hover {
+            background-color: #5b2c83;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PORTADA -->
+    <header id="inicio">
+        <h1>📊 Funciones Matemáticas</h1>
+        <p>Tipos, características, fórmulas y gráficos</p>
+        <a href="#funciones" class="boton">Comenzar</a>
+    </header>
+
+    <!-- MENÚ -->
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#funciones">Funciones</a>
+        <a href="#caracteristicas">Características</a>
+        <a href="#importancia">Importancia</a>
+    </nav>
+
+    <!-- INTRODUCCIÓN -->
+    <section>
+        <div class="intro">
+            <h2>¿Qué es una función matemática?</h2>
+
+            <p>
+                Una función matemática es una relación entre dos conjuntos
+                en la que a cada valor de entrada le corresponde un único
+                valor de salida.
+            </p>
+
+            <p>
+                Las funciones permiten representar relaciones entre
+                diferentes cantidades y pueden representarse mediante
+                fórmulas, tablas y gráficos.
+            </p>
+        </div>
+    </section>
+
+    <!-- FUNCIONES -->
+    <section id="funciones">
+
+        <h2>📚 Tipos de funciones</h2>
+
+        <div class="contenedor">
+
+            <!-- FUNCIÓN CONSTANTE -->
+            <div class="tarjeta">
+
+                <h3>1. Función constante</h3>
+
+                <p>
+                    Es una función cuyo valor permanece igual para todos
+                    los valores de x.
+                </p>
+
+                <div class="formula">
+                    f(x) = c
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Su gráfica es una línea horizontal.</li>
+                    <li>La pendiente es 0.</li>
+                    <li>El valor de la función siempre es el mismo.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                    <div class="linea" style="transform: rotate(0deg);"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN LINEAL -->
+            <div class="tarjeta">
+
+                <h3>2. Función lineal</h3>
+
+                <p>
+                    Es una función cuya representación gráfica es una línea
+                    recta.
+                </p>
+
+                <div class="formula">
+                    f(x) = mx + b
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Su gráfica es una recta.</li>
+                    <li>m representa la pendiente.</li>
+                    <li>b representa la intersección con el eje Y.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                    <div class="linea"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN CUADRÁTICA -->
+            <div class="tarjeta">
+
+                <h3>3. Función cuadrática</h3>
+
+                <p>
+                    Es una función cuyo mayor exponente de x es 2.
+                </p>
+
+                <div class="formula">
+                    f(x) = ax² + bx + c
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Su gráfica es una parábola.</li>
+                    <li>Puede abrir hacia arriba o hacia abajo.</li>
+                    <li>Tiene un vértice.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                    <div class="parabola"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN RACIONAL -->
+            <div class="tarjeta">
+
+                <h3>4. Función racional</h3>
+
+                <p>
+                    Es una función que puede expresarse como el cociente
+                    entre dos polinomios.
+                </p>
+
+                <div class="formula">
+                    f(x) = P(x) / Q(x)
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>El denominador no puede ser igual a cero.</li>
+                    <li>Puede tener asíntotas.</li>
+                    <li>Su gráfica puede tener varias ramas.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN RADICAL -->
+            <div class="tarjeta">
+
+                <h3>5. Función radical</h3>
+
+                <p>
+                    Es una función que contiene una variable dentro de
+                    una raíz.
+                </p>
+
+                <div class="formula">
+                    f(x) = √x
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Puede contener raíces.</li>
+                    <li>Su dominio depende del índice de la raíz.</li>
+                    <li>Su gráfica comienza en un punto determinado.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN EXPONENCIAL -->
+            <div class="tarjeta">
+
+                <h3>6. Función exponencial</h3>
+
+                <p>
+                    Es una función en la que la variable aparece como
+                    exponente.
+                </p>
+
+                <div class="formula">
+                    f(x) = aˣ
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>La variable está en el exponente.</li>
+                    <li>Puede representar crecimiento o decrecimiento.</li>
+                    <li>Su gráfica tiene una forma característica.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                    <div class="exponencial"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN LOGARÍTMICA -->
+            <div class="tarjeta">
+
+                <h3>7. Función logarítmica</h3>
+
+                <p>
+                    Es la función inversa de una función exponencial.
+                </p>
+
+                <div class="formula">
+                    f(x) = logₐ(x)
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Su argumento debe ser positivo.</li>
+                    <li>Es inversa de la función exponencial.</li>
+                    <li>Tiene una asíntota vertical.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                </div>
+
+            </div>
+
+
+            <!-- FUNCIÓN TRIGONOMÉTRICA -->
+            <div class="tarjeta">
+
+                <h3>8. Funciones trigonométricas</h3>
+
+                <p>
+                    Son funciones relacionadas con los ángulos y los
+                    triángulos.
+                </p>
+
+                <div class="formula">
+                    sen(x), cos(x), tan(x)
+                </div>
+
+                <p><b>Características:</b></p>
+
+                <ul>
+                    <li>Son funciones periódicas.</li>
+                    <li>Se utilizan en geometría y física.</li>
+                    <li>Las principales son seno, coseno y tangente.</li>
+                </ul>
+
+                <div class="grafico">
+                    <div class="eje-x"></div>
+                    <div class="eje-y"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- CARACTERÍSTICAS -->
+    <section id="caracteristicas">
+
+        <h2>🔎 Características de las funciones</h2>
+
+        <div class="contenedor">
+
+            <div class="tarjeta">
+                <h3>Dominio</h3>
+                <p>
+                    Es el conjunto de valores que puede tomar la variable
+                    independiente x.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Rango</h3>
+                <p>
+                    Es el conjunto de valores que puede tomar la variable
+                    dependiente y.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Gráfica</h3>
+                <p>
+                    Es la representación visual de los valores de una
+                    función en el plano cartesiano.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Variable independiente</h3>
+                <p>
+                    Generalmente se representa con x y es el valor que
+                    podemos elegir.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Variable dependiente</h3>
+                <p>
+                    Generalmente se representa con y y depende del valor
+                    de x.
+                </p>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Regla de correspondencia</h3>
+                <p>
+                    Es la relación o fórmula que permite obtener el valor
+                    de salida a partir del valor de entrada.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- IMPORTANCIA -->
+    <section id="importancia">
+
+        <div class="intro">
+
+            <h2>⭐ Importancia de las funciones</h2>
+
+            <p>
+                Las funciones matemáticas son importantes porque permiten
+                representar y estudiar relaciones entre diferentes
+                cantidades.
+            </p>
+
+            <p>
+                Se utilizan en matemáticas, física, economía, informática,
+                ingeniería y muchas otras áreas.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+
+        <h3>Funciones Matemáticas</h3>
+
+        <p>
+            Página educativa sobre los principales tipos de funciones.
+        </p>
+
+        <p>
+            © 2026 - Proyecto escolar
+        </p>
+
+    </footer>
+
+</body>
+</html>
